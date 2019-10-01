@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E30B6702342E0DC0097A92C /* myprog2.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E30B66A2342E0DC0097A92C /* myprog2.c */; };
-		6E30B6712342E0DC0097A92C /* myprog3.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E30B66E2342E0DC0097A92C /* myprog3.c */; };
 		6E30B6722342E0DC0097A92C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E30B66F2342E0DC0097A92C /* main.c */; };
-		6E30B6762342E34A0097A92C /* myprog4.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E30B6752342E34A0097A92C /* myprog4.c */; };
+		6E30B679234366A00097A92C /* Parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E30B677234366A00097A92C /* Parser.c */; };
+		6E30B67C2343763C0097A92C /* ExecuteCommand.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E30B67A2343763C0097A92C /* ExecuteCommand.c */; };
+		6E30B67F234379E50097A92C /* Header.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E30B67E234379E50097A92C /* Header.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,12 +26,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6E2E1485233A7CA6000998CB /* File.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = File.rtf; sourceTree = "<group>"; };
-		6E30B66A2342E0DC0097A92C /* myprog2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = myprog2.c; sourceTree = "<group>"; };
-		6E30B66E2342E0DC0097A92C /* myprog3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = myprog3.c; sourceTree = "<group>"; };
 		6E30B66F2342E0DC0097A92C /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		6E30B6732342E1050097A92C /* StudyMaterial.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StudyMaterial.cpp; sourceTree = "<group>"; };
-		6E30B6752342E34A0097A92C /* myprog4.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = myprog4.c; sourceTree = "<group>"; };
+		6E30B677234366A00097A92C /* Parser.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Parser.c; sourceTree = "<group>"; };
+		6E30B678234366A00097A92C /* Parser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
+		6E30B67A2343763C0097A92C /* ExecuteCommand.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ExecuteCommand.c; sourceTree = "<group>"; };
+		6E30B67B2343763C0097A92C /* ExecuteCommand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExecuteCommand.h; sourceTree = "<group>"; };
+		6E30B67D234377240097A92C /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		6E30B67E234379E50097A92C /* Header.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Header.c; sourceTree = "<group>"; };
 		6E6F05092339BAB400A08DCE /* BuildingShell */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BuildingShell; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -66,11 +68,13 @@
 			isa = PBXGroup;
 			children = (
 				6E30B66F2342E0DC0097A92C /* main.c */,
-				6E30B66A2342E0DC0097A92C /* myprog2.c */,
-				6E30B66E2342E0DC0097A92C /* myprog3.c */,
-				6E2E1485233A7CA6000998CB /* File.rtf */,
+				6E30B677234366A00097A92C /* Parser.c */,
+				6E30B678234366A00097A92C /* Parser.h */,
 				6E30B6732342E1050097A92C /* StudyMaterial.cpp */,
-				6E30B6752342E34A0097A92C /* myprog4.c */,
+				6E30B67A2343763C0097A92C /* ExecuteCommand.c */,
+				6E30B67B2343763C0097A92C /* ExecuteCommand.h */,
+				6E30B67D234377240097A92C /* Header.h */,
+				6E30B67E234379E50097A92C /* Header.c */,
 			);
 			path = BuildingShell;
 			sourceTree = "<group>";
@@ -132,10 +136,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E30B6702342E0DC0097A92C /* myprog2.c in Sources */,
+				6E30B67C2343763C0097A92C /* ExecuteCommand.c in Sources */,
 				6E30B6722342E0DC0097A92C /* main.c in Sources */,
-				6E30B6762342E34A0097A92C /* myprog4.c in Sources */,
-				6E30B6712342E0DC0097A92C /* myprog3.c in Sources */,
+				6E30B67F234379E50097A92C /* Header.c in Sources */,
+				6E30B679234366A00097A92C /* Parser.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
