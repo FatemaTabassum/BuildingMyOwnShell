@@ -234,6 +234,13 @@ void signalAndTerminal2() {
 }
 
 
+// I can set in my bash using export
+// export mypath=path
+// this export will set this path for current proecss and all of its child processes. all the child processes get the env var from parent process
+void set_env() {
+    
+}
+
 
 void fork_test() {
     pid_t child_pid = fork();

@@ -13,6 +13,10 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "Header.h"
+#include <errno.h>
+#include <sys/stat.h>
+
+extern int errno;
 
 void print_current_working_directory(void);
 

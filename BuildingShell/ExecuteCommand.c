@@ -44,23 +44,53 @@ void set_shell(void) {
     
 }
 
+bool check_if_path_exist(const char *path) {
+    const char* folder;
+    //folder = "C:\\Users\\SaMaN\\Desktop\\Ppln";
+    folder = "/path";
+    struct stat sb;
+
+    if (stat(folder, &sb) == 0 && S_ISDIR(sb.st_mode)) {
+        printf("YES\n");
+        return true;
+    } else {
+        printf("NO\n");
+        return false;
+    }
+}
+
+
+
 void set_env_variable(const char * env_var_path) {
     
     const char s[2] = {'='};
     char *all_str = strtok(env_var_path, s);
     char *name_str = " ";
     char *path_str = "";
+    int idx = 0;
+    bool wrong = false;
     while (all_str != NULL) {
-        if (strcmp(all_str, "MYPATH") == 0) {
+        if (idx == 0 && strcmp(all_str, "MYPATH") == 0) {
             name_str = all_str;
+        } else if((idx == 0 && strcmp(all_str, "MYPATH") != 0)) {
+            wrong = true;
         } else {
+            //check_if_path_exist();
             path_str = all_str;
         }
+        idx++;
         all_str = strtok(NULL, s);
     }
-    setenv(name_str, path_str, 1);
+    int success = setenv(name_str, path_str, 1);
+    // have to usetenv when exit
+    if (success == -1) {
+        fprintf(stderr, "Error set Environment %s\n", strerror(errno));
+        return;
+    }
+    
     printf("getenv_var = %s\n", getenv(name_str));
 }
+
 
 
 char * change_to_home_directory(const char * path) {
@@ -79,8 +109,6 @@ char * change_to_home_directory(const char * path) {
     return new_full_path;
     
 }
-
-
 
 
 
