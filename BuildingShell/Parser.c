@@ -61,6 +61,8 @@ void parse_tokens(char *all_tokens[], int idx) {
 
         } else if (strcmp(str, "set") == 0) {
             
+            set_env_variable(all_tokens[1]);
+            
         } else if (strcmp(str, "ls") == 0) {
             
         }

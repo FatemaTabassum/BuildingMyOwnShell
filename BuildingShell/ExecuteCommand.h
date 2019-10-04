@@ -24,4 +24,6 @@ void go_to_directory(void);
 
 void change_current_directory(const char *);
 
+void set_env_variable(const char *);
+
 #endif /* ExecuteCommand_h */

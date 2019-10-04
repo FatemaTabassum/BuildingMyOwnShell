@@ -44,12 +44,29 @@ void set_shell(void) {
     
 }
 
+void set_env_variable(const char * env_var_path) {
+    
+    const char s[2] = {'='};
+    char *all_str = strtok(env_var_path, s);
+    char *name_str = " ";
+    char *path_str = "";
+    while (all_str != NULL) {
+        if (strcmp(all_str, "MYPATH") == 0) {
+            name_str = all_str;
+        } else {
+            path_str = all_str;
+        }
+        all_str = strtok(NULL, s);
+    }
+    setenv(name_str, path_str, 1);
+    printf("getenv_var = %s\n", getenv(name_str));
+}
+
 
 char * change_to_home_directory(const char * path) {
-
     char * home_path = getenv("HOME");
-    int len_home = strlen(home_path);
-    int len_path_ = strlen(path);
+    int len_home  = (int)strlen(home_path);
+    int len_path_ = (int)strlen(path);
     char * new_full_path
     = malloc(len_home + len_path_ + 5);
     strcpy(new_full_path, home_path);
@@ -62,6 +79,11 @@ char * change_to_home_directory(const char * path) {
     return new_full_path;
     
 }
+
+
+
+
+
 
 void change_current_directory(const char * dir_path) {
     char curr_working_dir[1024];
