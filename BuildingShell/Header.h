@@ -12,6 +12,8 @@
 #define PRINT_NEWLINE printf("\n")
 
 #include <stdbool.h>
+#include <string.h>
+#include <errno.h>
 
 extern bool should_exit_shell;
 

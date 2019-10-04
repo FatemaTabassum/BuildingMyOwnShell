@@ -11,14 +11,17 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include "Header.h"
 
-void print_current_working_divoidrectory(void);
+void print_current_working_directory(void);
 
 void exit_shell(void);
 
-void sevoidt_shell(void);
+void set_shell(void);
 
-void go_to_divoidrectory(void);
+void go_to_directory(void);
+
+void change_current_directory(const char *);
 
 #endif /* ExecuteCommand_h */

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E15DB0B23458E1D0010A5EA /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 6E15DB0A23458E1D0010A5EA /* Makefile */; };
 		6E30B6722342E0DC0097A92C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E30B66F2342E0DC0097A92C /* main.c */; };
 		6E30B679234366A00097A92C /* Parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E30B677234366A00097A92C /* Parser.c */; };
 		6E30B67C2343763C0097A92C /* ExecuteCommand.c in Sources */ = {isa = PBXBuildFile; fileRef = 6E30B67A2343763C0097A92C /* ExecuteCommand.c */; };
@@ -26,6 +27,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6E15DB0A23458E1D0010A5EA /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		6E30B66F2342E0DC0097A92C /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		6E30B6732342E1050097A92C /* StudyMaterial.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StudyMaterial.cpp; sourceTree = "<group>"; };
 		6E30B677234366A00097A92C /* Parser.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Parser.c; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				6E30B67B2343763C0097A92C /* ExecuteCommand.h */,
 				6E30B67D234377240097A92C /* Header.h */,
 				6E30B67E234379E50097A92C /* Header.c */,
+				6E15DB0A23458E1D0010A5EA /* Makefile */,
 			);
 			path = BuildingShell;
 			sourceTree = "<group>";
@@ -136,6 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E15DB0B23458E1D0010A5EA /* Makefile in Sources */,
 				6E30B67C2343763C0097A92C /* ExecuteCommand.c in Sources */,
 				6E30B6722342E0DC0097A92C /* main.c in Sources */,
 				6E30B67F234379E50097A92C /* Header.c in Sources */,

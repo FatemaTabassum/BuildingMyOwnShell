@@ -46,7 +46,10 @@ extern int errno;
 
 
 
-
+///////////////// Pthread ///////////
+//each thread has a signal mask to block signal
+// but all the thread of a process has only one signal handler
+//All threads share data via global variables of the proceess.. as you are in the same process. it odsnt need IPC mechanism
 
 
 
@@ -85,6 +88,10 @@ void printDirectory() {
 
 
 
+
+// Message Que
+
+//some command // ipcs | less
 
 
 

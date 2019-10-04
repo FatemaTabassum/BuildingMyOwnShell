@@ -7,6 +7,7 @@
 //
 
 #include "Parser.h"
+#include "ExecuteCommand.h"
 
 char *all_tokens[100];
 
@@ -42,14 +43,16 @@ void tokenize( char *str) {
 
 void parse_tokens(char *all_tokens[], int idx) {
     
-        char * str = all_tokens[0];
+        const char * str = all_tokens[0];
         if ( strcmp(str, "pwd") == 0){
             
             print_current_working_directory();
             return;
             
         } else if (strcmp(str, "cd") == 0) {
-            
+            if (idx > 1) {
+                change_current_directory(all_tokens[1]);
+            }
         } else if (strcmp(str, "exit") == 0) {
             exit_shell();                           // exit code with command exit
             if (should_exit_shell == true) {
