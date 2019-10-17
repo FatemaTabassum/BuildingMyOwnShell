@@ -15,7 +15,14 @@
 #include "ExecuteCommand.h"
 
 
+extern bool is_pipe_command;
+extern bool is_set_env_var_command;
+extern bool is_io_redirection_command_output;
+extern bool is_io_redirection_command_input;
+
+
 void tokenize( char *str);
 void parse_tokens(char *all_tokens[], int idx);
+void reset_all_values_parser();
 
 #endif /* Parser_h */
