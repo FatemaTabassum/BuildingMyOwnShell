@@ -65,9 +65,9 @@ void reset_values(char str[]) {
 
 void join_signal() {
     if (signal(SIGINT, signal_handler) == SIG_ERR)
-        //psignal(SIGINT, "Cannot join SIGINT due to");
+        psignal(SIGINT, "Cannot join SIGINT due to");
     if (signal(SIGTERM, signal_handler) == SIG_ERR)
-        //psignal(SIGTERM, "Cannot join SIGTERM due to");
+        psignal(SIGTERM, "Cannot join SIGTERM due to");
 }
 
 void signal_handler(int signo) {

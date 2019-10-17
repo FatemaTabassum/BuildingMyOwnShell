@@ -11,6 +11,12 @@
 #define MAX_ARGUMENTS 10
 #define MAX_PATH_SIZE 1024
 
+extern int errno;
+extern bool is_pipe_command;
+extern bool is_set_env_var_command;
+extern bool is_io_redirection_command_output;
+extern bool is_io_redirection_command_input;
+
 void simple_i_o_redicrect(char* all_commands[], int command_count);
 
 
