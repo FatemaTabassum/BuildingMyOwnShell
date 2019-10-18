@@ -58,7 +58,6 @@ static int num_of_active_jobs = 0;
 
 
 
-static const char * mypath = "MYPATH";
 //static const char *myls_path = "/Volumes/Liza\ Disk/FSU/CPDP/Codes/MylsImplement/MylsImplement/myls";
 
 

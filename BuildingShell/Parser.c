@@ -188,7 +188,7 @@ void parse_tokens(char *all_tokens[], int idx) {
             }
         } else if (strcmp(str, "exit") == 0) {
             printf("exit\n");
-            exit_shell();                           // exit code with command exit
+            should_exit_shell = true;
             return;
 
         } else if (strcmp(str, "set MYPATH") == 0) {

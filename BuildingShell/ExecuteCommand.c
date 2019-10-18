@@ -24,6 +24,9 @@ static char *arguments_v[MAX_ARGUMENTS];
 static int arguments_cnt;
 static char curr_working_dir[MAX_PATH_SIZE];
 
+const char * mypath = "MYPATH";
+
+
 
 void reset_all_values_Execute() {
     FOR_LOOP(MAX_PATH_SIZE) {
@@ -65,7 +68,6 @@ void get_all_arguments_of_commands(char * str) {
     return ;
 }
 
-#pragma mark PIPE
 void execute_pipe(char *all_commands[],  int num_of_commnds) {
     
     int first_command = 0;
@@ -147,7 +149,6 @@ void execute_pipe(char *all_commands[],  int num_of_commnds) {
 
 
 
-#pragma mark I/O Redirection
 
 void execute_io_redirection_input(char* all_commands[], int command_count) {
     
@@ -192,8 +193,12 @@ void execute_io_redirection_input(char* all_commands[], int command_count) {
         //char *arguments[10] = {"ls"};
         dup2(file_d, READ);
         close(file_d);
-        if (execvp(arguments_v[0], arguments_v) < 0) {
-            fprintf(stderr,"%s: command not found\n", arguments_v[0]);
+        
+        if (!strcmp(arguments_v[0], MYLS)) {
+            execute_myls(arguments_v, arguments_cnt);
+        } else if(execvp(arguments_v[0],arguments_v ) == ERROR_CODE) {
+            fprintf(stderr, "%s: command not found",arguments_v[0]);
+            exit(EXIT_FAILURE);
         }
         exit(EXIT_SUCCESS);
     } else {
@@ -253,8 +258,11 @@ void execute_io_redirection_output(char* all_commands[], int command_count) {
             fprintf(stderr, "dup error write %s", strerror(errno));
         }
         close(file_d);
-        if (execvp(arguments_v[0], arguments_v) < 0) {
-            fprintf(stderr,"%s: command not found\n", arguments_v[0]);
+        if (!strcmp(arguments_v[0], MYLS)) {
+            execute_myls(arguments_v, arguments_cnt);
+        } else if(execvp(arguments_v[0],arguments_v ) == ERROR_CODE) {
+            fprintf(stderr, "%s: command not found",arguments_v[0]);
+            exit(EXIT_FAILURE);
         }
         exit(EXIT_SUCCESS);
     } else {
@@ -366,7 +374,6 @@ void execute_io_redirection_input_output(char* all_commands[], int command_count
 
 
 
-#pragma mark Print Current working Directory
 void print_current_working_directory(void) {
     char curr_working_dir[1024];
     if(getcwd(curr_working_dir, sizeof(curr_working_dir)) == NULL) {
@@ -378,15 +385,12 @@ void print_current_working_directory(void) {
     return;
 }
 
-#pragma mark Shell Exit
 void exit_shell(void) {
     should_exit_shell = true;
-    PRINT_NEWLINE;
-    //check_all_the_processes_to_kill
+    //kill(0, SIGTERM);
     return;
 }
 
-#pragma mark Set Shell
 void set_shell(void) {
     
 }
@@ -408,7 +412,6 @@ bool check_if_path_exist(const char *path) {
 
 
 
-#pragma mark Set Environment Variable
 void set_env_variable(char * env_var_path) {
     
     char s[2] = "\\";
@@ -429,17 +432,12 @@ void set_env_variable(char * env_var_path) {
         }
     }
     newpath[ind] = '\0';
-    //set MYPATH=/Volumes/Liza\ Disk/FSU/CPDP/Codes/MylsImplement/MylsImplement/myls
     if ((setenv(mypath, newpath, 1)) == ERROR) {
         fprintf(stderr, "Error set Environment %s\n", strerror(errno));
         return;
     }
-    //printf("getenv_var = %s\n", getenv(mypath));
 }
 
-
-#pragma mark Change Directory
-//need to recheck
 char * change_to_home_directory(const char * path) {
     char * home_path = getenv("HOME");
     int len_home  = (int)strlen(home_path);
@@ -469,7 +467,6 @@ void change_current_directory(const char * dir_path) {
     }
 }
 
-#pragma mark Myls
 char *full_path_name;
 
 void go_to_path(char *path) {
@@ -483,7 +480,7 @@ void go_to_path(char *path) {
 }
 
 
-char ** generate_commands_myls_from(char * all_commands[], int command_cnt) {
+char ** generate_commands_myls_from(char * all_commands[], int command_cnt, char *myls_path) {
     
     //input = (char**)malloc(numberOfTokens+1*sizeof(char*));
     //input[numberOfTokens] = (char *)malloc((strlen(temp)+1)*sizeof(char));
@@ -491,7 +488,7 @@ char ** generate_commands_myls_from(char * all_commands[], int command_cnt) {
     char **argv = (char **)malloc(NUMBER_OF_TOKENS_MYLS * sizeof(char*));
     int indx = 0;
     argv[indx] = (char *) malloc(20 * sizeof(char));
-    strcpy(argv[indx], "/myls");
+    strcpy(argv[indx], myls_path);
     FOR_LOOP_FROM(1, command_cnt+1) {
         argv[i] = (char *) malloc(strlen((all_commands[i-1]) + 5) * sizeof(char));
         argv[i] = all_commands[i-1];
@@ -510,24 +507,25 @@ void execute_myls(char* all_commands[], int command_count) {
         get_current_working_directory();
         go_to_path(curr_working_dir);
         myls_path = strdup(full_path_name);
+        
     } else {
         go_to_path(myls_path);
         myls_path = strdup(full_path_name);
-        chmod(myls_path, 0740);
+        chmod(myls_path, 0777);
     }
-    char **argv = generate_commands_myls_from(all_commands, command_count);
+    char **argv = generate_commands_myls_from(all_commands, command_count, myls_path);
     
     pid_t pid_ls = fork();
     if (pid_ls == ERROR) {
         perror("Fork");
         strerror(errno);
     } else if (pid_ls == CHILDFORK) {
-        //check_if_path_exist(myls_path);
-        execv(myls_path, argv);
-        perror("Return from execvp() not expected");
-        exit(EXIT_FAILURE);
+
+        if (execv(myls_path, argv) == ERROR_CODE) {
+            perror("myls");
+            exit(EXIT_FAILURE);
+        }
     } else {
-        // Parent // wait hocchena thik moto. terminate hoye jacche keno 2nd input er khetre
         int wait_status;
         waitpid(pid_ls, &wait_status, 0);
         if (WIFEXITED(wait_status)) {
@@ -574,7 +572,6 @@ void execute_internal_external_commands(char* all_commands[], int command_count)
 }
 
 
-#pragma mark Sample I/O Redirect
 void simple_i_o_redicrect(char* all_commands[], int command_count) {
     
     get_current_working_directory();
